@@ -17,13 +17,13 @@ pub const Server = struct {
     pub fn init(io: Io) !Server {
         const host: []const u8 = "127.0.0.1";
         const port: u16 = 3490;
-        const addr = try Io.net.IpAddress.parseIp4(host, port); // bind();
+        const addr = try std.Io.net.IpAddress.parseIp4(host, port);
 
         return .{ .host = host, .port = port, .addr = addr, .io = io };
     }
 
     pub fn listen(self: Server) !Io.net.Server {
-        std.debug.print("Server listening at: {s}:{}\n", .{ self.host, self.port });
+        std.debug.print("Server listening at: {s}:{}\n", .{self.host, self.port});
         return try self.addr.listen(self.io, .{
             .mode = Socket.Mode.stream,
             .protocol = Protocol.tcp,

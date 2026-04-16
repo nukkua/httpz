@@ -33,8 +33,8 @@ pub fn main(init: std.process.Init) !void {
     @memset(request_buffer[0..], 0);
     try Request.read_request(io, conn, request_buffer[0..]);
     const request = try Request.Request.parse_request(request_buffer[0..]);
-    if(request.method == Request.Method.GET){
-        if(std.mem.eql(u8, request.uri, "/")){
+    if (request.method == Request.Method.GET) {
+        if (std.mem.eql(u8, request.uri, "/")) {
             try Response.send_200(conn, io);
         }
     }

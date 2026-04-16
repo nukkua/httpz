@@ -8,6 +8,7 @@ pub fn send_200(conn: Stream, io: Io) !void {
         ++ "\nContent-Type: text/html\n"
         ++ "Connection: Closed\n\n<html><body>"
         ++ "<h1>Hello, World!</h1></body></html>"
+        ++ "<h1>Pancakes</h1></body></html>"
     );
 
     var stream_writer = conn.writer(io, &.{});
